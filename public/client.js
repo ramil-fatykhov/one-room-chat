@@ -7,9 +7,9 @@ strings = {
 };
 window.onload = function() {
 	if (navigator.userAgent.toLowerCase().indexOf('chrome') != -1) {
-		socket = io.connect('http://46.182.31.65:8080', {'transports': ['xhr-polling']});
+		socket = io.connect('localhost:3000', {'transports': ['xhr-polling']});
 	} else {
-		socket = io.connect('http://46.182.31.65:8080');
+		socket = io.connect('localhost:3000');
 	}
 	socket.on('connect', function () {
 		socket.on('message', function (msg) {
