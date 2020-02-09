@@ -1,5 +1,6 @@
 var express = require('express')
 var app = express()
+var SingleList = require('./public/messageStorage')
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
@@ -18,10 +19,11 @@ io.sockets.on('connection', function (socket) {
   socket.broadcast.json.send({'event': 'userJoined', 'name': ID, 'time': time});
   
 	socket.on('message', function (msg) {
-		var time = (new Date).toLocaleTimeString();
+    var time = (new Date).toLocaleTimeString();
+    var msgList = new SingleList()
 		socket.json.send({'event': 'messageSent', 'name': ID, 'text': msg, 'time': time});
     socket.broadcast.json.send({'event': 'messageReceived', 'name': ID, 'text': msg, 'time': time})
-    console.log(msg);
+    msgList.add(msg)
   });
   
 	socket.on('disconnect', function() {

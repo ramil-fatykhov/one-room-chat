@@ -1,10 +1,11 @@
 strings = {
-	'connected': '[sys][time]%time%[/time]: Вы успешно соединились к сервером как [user]%name%[/user].[/sys]',
+	'connected': '[sys][time]%time%[/time]: Вы успешно соединились как [user]%name%[/user].[/sys]',
 	'userJoined': '[sys][time]%time%[/time]: Пользователь [user]%name%[/user] присоединился к чату.[/sys]',
 	'messageSent': '[out][time]%time%[/time]: [user]%name%[/user]: %text%[/out]',
 	'messageReceived': '[in][time]%time%[/time]: [user]%name%[/user]: %text%[/in]',
 	'userSplit': '[sys][time]%time%[/time]: Пользователь [user]%name%[/user] покинул чат.[/sys]'
 };
+
 window.onload = function() {
 	socket = io.connect('localhost:3000');
 	socket.on('connect', function () {
