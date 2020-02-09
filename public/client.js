@@ -6,11 +6,7 @@ strings = {
 	'userSplit': '[sys][time]%time%[/time]: Пользователь [user]%name%[/user] покинул чат.[/sys]'
 };
 window.onload = function() {
-	if (navigator.userAgent.toLowerCase().indexOf('chrome') != -1) {
-		socket = io.connect('localhost:3000', {'transports': ['xhr-polling']});
-	} else {
-		socket = io.connect('localhost:3000');
-	}
+	socket = io.connect('localhost:3000');
 	socket.on('connect', function () {
 		socket.on('message', function (msg) {
 			document.querySelector('#log').innerHTML += strings[msg.event].replace(/\[([a-z]+)\]/g, '<span class="$1">').replace(/\[\/[a-z]+\]/g, '</span>').replace(/\%time\%/, msg.time).replace(/\%name\%/, msg.name).replace(/\%text\%/, unescape(msg.text).replace('<', '&lt;').replace('>', '&gt;')) + '<br>';
