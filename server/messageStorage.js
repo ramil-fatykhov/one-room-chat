@@ -10,17 +10,17 @@ function SinglyList() {
 
 SinglyList.prototype.add = function(value) {
   var node = new Node(value),
-      currentNode = this.head;
+    currentNode = this.head;
 
   if (!currentNode) {
-      this.head = node;
-      this._length++;
+    this.head = node;
+    this._length++;
 
-      return node;
+    return node;
   }
 
   while (currentNode.next) {
-      currentNode = currentNode.next;
+    currentNode = currentNode.next;
   }
 
   currentNode.next = node;
