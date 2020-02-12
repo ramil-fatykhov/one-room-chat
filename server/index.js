@@ -1,8 +1,8 @@
-var express = require("express");
-var app = express();
-var SingleList = require("./messageStorage");
-var http = require("http").createServer(app);
-var io = require("socket.io")(http);
+const express = require("express");
+const app = express();
+const SingleList = require("./messageStorage");
+const http = require("http").createServer(app);
+const io = require("socket.io")(http);
 
 io.set("log level", 1);
 
@@ -13,14 +13,14 @@ app.get("/", function(req, res) {
 });
 
 io.sockets.on("connection", function(socket) {
-  var ID = socket.id.toString().substr(0, 5);
-  var time = new Date().toLocaleTimeString();
+  const ID = socket.id.toString().substr(0, 5);
+  const time = new Date().toLocaleTimeString();
   socket.json.send({ event: "connected", name: ID, time: time });
   socket.broadcast.json.send({ event: "userJoined", name: ID, time: time });
 
   socket.on("message", function(msg) {
-    var time = new Date().toLocaleTimeString();
-    var msgList = new SingleList();
+    const time = new Date().toLocaleTimeString();
+    const msgList = new SingleList();
     socket.json.send({ event: "messageSent", name: ID, text: msg, time: time });
     socket.broadcast.json.send({
       event: "messageReceived",
@@ -32,7 +32,7 @@ io.sockets.on("connection", function(socket) {
   });
 
   socket.on("disconnect", function() {
-    var time = new Date().toLocaleTimeString();
+    const time = new Date().toLocaleTimeString();
     io.sockets.json.send({ event: "userSplit", name: ID, time: time });
   });
 });
