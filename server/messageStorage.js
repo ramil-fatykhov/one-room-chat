@@ -1,33 +1,30 @@
-function Node(data) {
-  this.data = data;
-  this.next = null;
-}
+export class SingleList {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+    this._length = 0;
+    this.head = null;
+  }
 
-function SinglyList() {
-  this._length = 0;
-  this.head = null;
-}
+  storeMessage () {
+    let node = new Node(value),
+      currentNode = this.head;
 
-SinglyList.prototype.add = function(value) {
-  var node = new Node(value),
-    currentNode = this.head;
+    if (!currentNode) {
+      this.head = node;
+      this._length++;
 
-  if (!currentNode) {
-    this.head = node;
+      return node;
+    }
+
+    while (currentNode.next) {
+      currentNode = currentNode.next;
+    }
+
+    currentNode.next = node;
+
     this._length++;
 
     return node;
   }
-
-  while (currentNode.next) {
-    currentNode = currentNode.next;
-  }
-
-  currentNode.next = node;
-
-  this._length++;
-
-  return node;
-};
-
-module.exports = SinglyList;
+}
