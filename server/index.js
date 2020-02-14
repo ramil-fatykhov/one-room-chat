@@ -1,6 +1,6 @@
+const SingleList = require("./singleList")
 const express = require("express");
 const app = express();
-const SingleList = require("./messageStorage")
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 
@@ -20,7 +20,7 @@ io.sockets.on("connection", function(socket) {
 
   socket.on("message", function(msg) {
     const time = new Date().toLocaleTimeString();
-    const msgList = new SingleList(msg);
+    const msgList = new SingleList();
     socket.json.send({ event: "messageSent", name: ID, text: msg, time: time });
     socket.broadcast.json.send({
       event: "messageReceived",

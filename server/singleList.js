@@ -1,12 +1,12 @@
-export class SingleList {
-  constructor(data) {
-    this.data = data;
-    this.next = null;
+const Node = require("./node")
+
+class SingleList {
+  constructor() {
     this._length = 0;
     this.head = null;
   }
 
-  storeMessage () {
+  storeMessage (value) {
     let node = new Node(value),
       currentNode = this.head;
 
@@ -28,3 +28,5 @@ export class SingleList {
     return node;
   }
 }
+
+module.exports = SingleList;

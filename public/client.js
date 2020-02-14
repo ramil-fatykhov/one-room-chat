@@ -14,7 +14,6 @@ window.onload = function() {
 	socket = io.connect('localhost:3000');
 	socket.on('connect', function () {
 		socket.on('message', function (msg) {
-			// eslint-disable-next-line no-useless-escape
 			document.querySelector('#log').innerHTML += returnStrings(msg);
 			document.querySelector('#log').scrollTop = document.querySelector('#log').scrollHeight;
     });
